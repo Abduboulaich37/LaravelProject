@@ -15,6 +15,22 @@ use App\Http\Controllers\MyController;
 |
 */
 
-Route::get('/', [MyController::class, 'index'])->name('index');
+
+// first 
+Route::get('/hello', function () {
+    return 'Hello World';
+});
+
+
+// second
+Route::get('/hola/{id}', function ($id) {
+    return $id;
+});
+
+// third
+Route::get('/hola/{id}/{name}', function ($id,$name) {
+    return "$id<br>$name";
+});
+
 
 
