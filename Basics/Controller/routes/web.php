@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PromotionController;
-use App\Http\Controllers\invokeController;
+use App\Http\Controllers\PromotionsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +15,4 @@ use App\Http\Controllers\invokeController;
 |
 */
 
-
-Route::get('/index', [PromotionController::class, 'index']);
-
-Route::get('/invoke', invokeController::class);
+Route::resource('promotions', PromotionsController::class);
