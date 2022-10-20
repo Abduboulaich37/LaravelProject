@@ -10,20 +10,11 @@ class MyController extends Controller
         return view ('welcome');
     }
 
-    public function add() {
-        return view ('add');
-    }
-   
-    public function hello() {
-        $hello = 'salamo3alikom';
-        return view ('hello');
-    }
-
     private static function getData(){
         return [
-            // ['id' => 1, 'name' => 'Abdelmouemine'],
-            // ['id' => 2, 'name' => 'Ayoub'],
-            // ['id' => 3, 'name' => 'Zakariae'],
+            ['id' => 1, 'name' => 'Abdelmouemine'],
+            ['id' => 2, 'name' => 'Ayoub'],
+            ['id' => 3, 'name' => 'Zakariae'],
         ];
     }
 
@@ -32,4 +23,6 @@ class MyController extends Controller
             'table' => self::getData()
         ]);
     }
+
+
 }

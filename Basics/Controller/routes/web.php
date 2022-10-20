@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MyController;
-
+use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\invokeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +15,7 @@ use App\Http\Controllers\MyController;
 |
 */
 
-Route::get('/', [MyController::class, 'index'])->name('index');
-Route::get('/add', [MyController::class, 'add'])->name('add');
-Route::get('/add/hello', [MyController::class, 'hello'])->name('hello');
-Route::get('/table', [MyController::class, 'table'])->name('table');
 
+Route::get('/index', [PromotionController::class, 'index']);
 
-
-
+Route::get('/invoke', invokeController::class);
