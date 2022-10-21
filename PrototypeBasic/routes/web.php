@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PromotionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/add', [PromotionsController::class, 'Add'])->name('Add');
+
+Route::Post('/insert', [PromotionsController::class, 'Insert'])->name('insert');
+
+Route::get('/index', [PromotionsController::class, 'select']);
