@@ -15,7 +15,7 @@ class MyController extends Controller
     }
 
     public function table(){
-        return view ('table' , [
+        return view ('pages.table' , [
             'table' => self::getData()
         ]);
     }
