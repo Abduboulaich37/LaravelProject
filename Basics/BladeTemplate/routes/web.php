@@ -16,10 +16,6 @@ use App\Http\Controllers\MyController;
 */
 
 Route::get('/table', [MyController::class, 'table'])->name('table');
-Route::get('/content',function(){
-    return view("pages.content");
-});
-
 
 
 
