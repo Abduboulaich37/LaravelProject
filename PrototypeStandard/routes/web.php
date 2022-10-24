@@ -29,3 +29,4 @@ Route::get('/index', [PromotionsController::class, 'select'])->name('index');
 Route::get('Edit/{id}', [PromotionsController::class, 'edit']);
 //Route for updating data 
 Route::post('update/{id}', [PromotionsController::class, 'update']);
+Route::get('Delete/{id}', [PromotionsController::class, 'delete']);

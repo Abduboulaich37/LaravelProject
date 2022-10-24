@@ -41,10 +41,17 @@ class PromotionsController extends Controller
     }
 
 
-    //fct for inserting the modified data coming from the update post route champ
+    //Update section
     public function update(Request $req, $id)
     {
         $promo = Promotion::where('id', $id)->update(["name" => $req->name]);
+        return redirect("index");
+    }
+
+    //Update section
+    public function delete(Request $req, $id)
+    {
+        $promo = Promotion::where('id', $id)->delete(["name" => $req->name]);
         return redirect("index");
     }
 }
