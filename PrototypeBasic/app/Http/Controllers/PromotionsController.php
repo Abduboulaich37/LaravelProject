@@ -17,7 +17,7 @@ class PromotionsController extends Controller
         $table = new Promotion();
         $table->name = $req->name;
         $table->save();
-        return redirect("add");
+        return redirect("index");
     }
 
     public function select()

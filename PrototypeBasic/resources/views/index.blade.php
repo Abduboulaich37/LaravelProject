@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Promotions</title>
 </head>
 <body>
 <table>
@@ -23,5 +23,6 @@
     @endforeach
     </tbody>
 </table>
+<a href="{{route('Add')}}">Add new Promotion</a>
 </body>
 </html>

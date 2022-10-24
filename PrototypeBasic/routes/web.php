@@ -22,4 +22,4 @@ Route::get('/add', [PromotionsController::class, 'Add'])->name('Add');
 
 Route::Post('/insert', [PromotionsController::class, 'Insert'])->name('insert');
 
-Route::get('/index', [PromotionsController::class, 'select']);
+Route::get('/index', [PromotionsController::class, 'select'])->name('index');

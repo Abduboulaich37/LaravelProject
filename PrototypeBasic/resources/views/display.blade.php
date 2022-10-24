@@ -1,1 +1,0 @@
-<h1>record inserted</h1>
