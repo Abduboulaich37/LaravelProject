@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PromotionsController;
+use App\Http\Controllers\ApprenantsController;
 use App\Http\Controllers\SearchController;
 
 /*
@@ -19,19 +20,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/add', [PromotionsController::class, 'Add'])->name('Add');
+Route::resource('promotions',PromotionsController::class);
+Route::get('/search',[PromotionsController::class,'search']);
 
-Route::Post('/insert', [PromotionsController::class, 'Insert'])->name('insert');
+Route::resource('gestionstud',ApprenantsController::class);
 
-Route::get('/index', [PromotionsController::class, 'select'])->name('index');
+Route::get('gestionstud/create/{id}',[ApprenantsController::class,'create'])->name('gestion.insert');
+Route::get('gestion/editstudent/{id}',[ApprenantsController::class,'edit'])->name('gestion.editstudent');
 
-//--------------------------Standard Route--------------------------------------
-//Route for retrieving data 
-Route::get('Edit/{id}', [PromotionsController::class, 'edit']);
-//Route for updating data 
-Route::post('update/{id}', [PromotionsController::class, 'update']);
-//Route for deleting data 
 Route::get('Delete/{id}', [PromotionsController::class, 'delete']);
+
 //Route for searching data 
 Route::get('search/{name}',[SearchController::class,'search']);
 Route::get('search',[SearchController::class,'search']);

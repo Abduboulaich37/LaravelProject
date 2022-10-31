@@ -10,11 +10,11 @@ class SearchController extends Controller
     //Search section
     public function search($name=null){ 
         if($name == null){
-            $data =Promotion::all();
-            return view('index_search',compact('data'));        }
+            $promotions =Promotion::all();
+            return view('promotions.index_search',compact('promotions'));        }
         else {
-            $data =Promotion::where('name', 'like','%'.$name.'%')->get();
-            return view('index_search',compact('data'));
+            $promotions =Promotion::where('name', 'like','%'.$name.'%')->get();
+            return view('promotions.index_search',compact('promotions'));
         }
     }
 }

@@ -1,58 +1,85 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Promotion;
+use App\Models\Apprenant;
 
 use Illuminate\Http\Request;
-use App\Models\Promotion;
 
 class PromotionsController extends Controller
 {
-
-    //Add section
-    public function Add()
+    protected function index()
     {
-        return view('welcome');
+        $promotions = Promotion::all();
+
+        return view('promotions.addPromotion', [
+            'promotions' => $promotions
+        ]);
     }
 
-
-    //Insert section
-    public function Insert(Request $req)
+    protected function create()
     {
-        $table = new Promotion();
-        $table->name = $req->name;
-        $table->save();
-        return redirect("index");
+        return view('promotions.create');
     }
 
-
-    //Display section
-    public function select()
+    protected function store(Request $request)
     {
-        $data = Promotion::all();
-        return view('index', compact('data'));
+        $request->validate(['name'=>'Required'
+        ]);
+        $promotion= new Promotion();
+        $promotion->name = $request->input('name');
+        $promotion->save();
+
+        return redirect("promotions");
+    }
+    protected function edit($id)
+    {
+        $apprenant = Apprenant::select("*")->where('PromotionID',$id)->get();
+        return view('promotions.edit',['promotion'=>Promotion::findOrFail($id),'apprenants'=>$apprenant]);
+
     }
 
+    protected function update(Request $request,$id)
+    {
+        $promotion=Promotion::findOrFail($id);
+        $promotion->name =strip_tags( $request->input('name'));
+        $promotion->save();
+        return redirect("promotions");
+    }
     
-    //Edit section
-    public function edit($id)
+    public function destroy($promotion)
     {
-        $data = Promotion::where('id', $id)->get();
-        return view("edit", compact("data"));
+        $todelete=Promotion::findOrFail($promotion);
+        $todelete->delete();
+        return redirect("promotions");
     }
 
-
-    //Update section
-    public function update(Request $req, $id)
+    public function delete(Request $request, $id)
     {
-        $promo = Promotion::where('id', $id)->update(["name" => $req->name]);
-        return redirect("index");
+        $promo = Promotion::where('id', $id)->delete(["name" => $request->name]);
+        return redirect("promotions");
     }
 
-    //Update section
-    public function delete(Request $req, $id)
-    {
-        $promo = Promotion::where('id', $id)->delete(["name" => $req->name]);
-        return redirect("index");
-    }
+    public function search(Request $request){
+        
+            $output="";
+            $promotions=Promotion::where('name','LIKE','%'.$request->search."%")->get();
+            
+                foreach($promotions as $promotion){
+                    $output.='<tr>
+            <td> '.$promotion->name.' </td>
+           
+            <td>'.'<a href="/promotions/'.$promotion['id'].'/edit">'.'<button>update</button></a>'.'</td>
+            <td>'.'<form method="post" action="'.route('promotions.destroy',$promotion->id ).'">
+            <input type="hidden" name="_method" value="Delete">
+            <input type="hidden" name="_token" value="'. csrf_token() .'">
+                <button type="submit" >Delete</button>
+            </form>'.'</td>
+            </tr>';
+                   
+                }
+                return response($output);
 
-}
+            }
+        }
+
