@@ -16,9 +16,6 @@ use App\Http\Controllers\SearchController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::resource('promotions',PromotionsController::class);
 Route::get('/search',[PromotionsController::class,'search']);
